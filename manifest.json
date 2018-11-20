@@ -1,0 +1,6 @@
+{
+	"name": "CORS Extension",
+	"version": "1.0",
+	"description": "Chrome extension for managing CORS",
+	"manifest_version": 2
+}
