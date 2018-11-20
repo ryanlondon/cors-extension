@@ -1,2 +1,2 @@
 # cors-extension
-Chrome extension for controlling CORS
+Chrome extension for managing CORS
