@@ -4,7 +4,7 @@ const userInputs = {
 	domains: [],
 }
 
-chrome.runtime.onInstalled.addListener(function() {
+chrome.runtime.onInstalled.addListener(() => {
 	console.log('The CORS extension has loaded')
 })
 
@@ -20,10 +20,11 @@ chrome.runtime.onMessage.addListener((message) => {
 })
 
 // TODO: make this work
-// chrome.webRequest.onSendHeaders.addListener(
-// 	function(details) {
-// 		console.log('sending headers', details)
-// 	},
-// 	{ urls: ['<all_urls>'], types: ['xmlhttprequest'] },
-// 	['requestHeaders']
-// )
+chrome.webRequest.onSendHeaders.addListener(
+	(details) => {
+		if (!userInputs.enabled) return
+		console.log('sending headers', details)
+	},
+	{ urls: ['<all_urls>'] },
+	[]
+)
