@@ -1,7 +1,8 @@
 const userInputs = {
   enabled: false,
   headers: [],
-  domains: []
+  'request-headers': [],
+  'response-headers': [],
 };
 
 const updateUserInputs = ([key, value]) => {
@@ -11,14 +12,13 @@ const updateUserInputs = ([key, value]) => {
       chrome.browserAction.setIcon({
         path: `icons/cors-extension-${iconStatus}-64.png`
       });
-      break;
       userInputs[key] = value;
+      break;
     default:
       const lines = value.split("\n");
       userInputs[key] = lines;
       break;
   }
-  console.log(userInputs);
 };
 
 const initialize = () => {
@@ -26,6 +26,34 @@ const initialize = () => {
     console.log("reading from local storage", result);
     Object.entries(result).forEach(updateUserInputs);
   });
+};
+
+const isInitiatorInDomain = ({initiator}) => {
+  if (!initiator) return false;
+  const lowerCasedInitiator = initiator ? initiator.toLowerCase(): null;
+
+  return userInputs.domains.findIndex(url => url.toLowerCase() === lowerCasedInitiator >=0);
+};
+
+const parseHeaders = (headers) => {
+  return headers.map(header => {
+    const split = header.split(':');
+    return {
+      name: split[0].trim(),
+      value: split[1].trim(),
+    }
+  })
+};
+
+const addOrReplaceHeaders = (target, headersToAdd) => {
+  const headerMap = target.reduce((acc, header) => {
+    acc[header.name] = header;
+    return acc
+  }, {});
+  headersToAdd.forEach(header => {
+      headerMap[header.name] = header;
+  });
+  return Object.values(headerMap);
 };
 
 chrome.runtime.onInstalled.addListener(() => {
@@ -45,27 +73,20 @@ chrome.runtime.onMessage.addListener(message => {
 
 chrome.webRequest.onBeforeSendHeaders.addListener(
   details => {
-    console.log("before sending headers", details);
-    if (userInputs.enabled) {
-      console.log("adding header!", userInputs.headers);
-      details.requestHeaders.push({
-        name: "Access-Control-Allow-Origin",
-        value: "*"
-      });
-    }
-    return { requestHeaders: details.requestHeaders };
+    if (!userInputs.enabled || !isInitiatorInDomain(details)) return;
+    const headersToAdd = parseHeaders(userInputs['request-headers']);
+    return { requestHeaders: addOrReplaceHeaders(details.requestHeaders, headersToAdd)};
   },
   { urls: ["<all_urls>"] },
   ["requestHeaders", "blocking"]
 );
 
-// TODO: make this work
-chrome.webRequest.onSendHeaders.addListener(
+chrome.webRequest.onHeadersReceived.addListener(
   details => {
-    // console.log("sending headers", details);
-    if (!userInputs.enabled) return;
-    console.log("sending headers", details);
+    if (!userInputs.enabled || !isInitiatorInDomain(details)) return;
+    const headersToAdd = parseHeaders(userInputs['response-headers']);
+    return {responseHeaders: addOrReplaceHeaders(details.responseHeaders, headersToAdd)};
   },
-  { urls: ["<all_urls>"] },
-  ["requestHeaders"]
+  {urls: ['<all_urls>']},
+  ["responseHeaders", "blocking", "extraHeaders"]
 );
