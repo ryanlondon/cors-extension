@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-	const textFields = ['domains', 'headers']
+	const textFields = ['domains', 'request-headers', 'response-headers']
 	const checkbox = 'enabled'
 
 	const enabled = document.getElementById(checkbox)
