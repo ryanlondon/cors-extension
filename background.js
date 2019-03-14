@@ -30,9 +30,9 @@ const initialize = () => {
 
 const isInitiatorInDomain = ({initiator}) => {
   if (!initiator) return false;
-  const lowerCasedInitiator = initiator ? initiator.toLowerCase(): null;
+  const lowerCasedInitiator = initiator ? initiator.toUpperCase(): null;
 
-  return userInputs.domains.findIndex(url => url.toLowerCase() === lowerCasedInitiator >=0);
+  return userInputs.domains.findIndex(url => url.toUpperCase() === lowerCasedInitiator) >= 0;
 };
 
 const parseHeaders = (headers) => {
@@ -47,17 +47,16 @@ const parseHeaders = (headers) => {
 
 const addOrReplaceHeaders = (target, headersToAdd) => {
   const headerMap = target.reduce((acc, header) => {
-    acc[header.name] = header;
+    acc[header.name.toUpperCase()] = header;
     return acc
   }, {});
   headersToAdd.forEach(header => {
-      headerMap[header.name] = header;
+      headerMap[header.name.toUpperCase()] = header;
   });
   return Object.values(headerMap);
 };
 
 chrome.runtime.onInstalled.addListener(() => {
-  console.log("The CORS extension has loaded");
   initialize();
 });
 
