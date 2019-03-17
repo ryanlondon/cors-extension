@@ -1,16 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<script src="popup.js"></script>
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-		<link rel="stylesheet" href="style.css" />
-	</head>
-	<body>
-		<div id="checkbox-container">
-			<input class="checkbox" id="enabled" type="checkbox" /> <label for="enabled">Enable CORS Extension</label>
-		</div>
-		<label for="domains">Domains</label> <textarea class="input" id="domains"></textarea>
-		<label for="request-headers">Request Headers</label> <textarea class="input" id="request-headers"></textarea>
-		<label for="response-headers">Response Headers</label> <textarea class="input" id="response-headers"></textarea>
-	</body>
+
+<head>
+	<script src="popup.js"></script>
+	<link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+	<div class="checkbox-container">
+		<input id="enabled" type="checkbox" />
+		<label for="enabled">Enable CORS Extension</label>
+	</div>
+	<div class="input-container">
+		<label for="domains">Domains</label>
+		<textarea class="input" id="domains"></textarea>
+	</div>
+	<div class="input-container">
+		<label for=" request-headers">Request Headers</label>
+		<textarea class="input" id="request-headers"></textarea>
+	</div>
+	<div class="input-container">
+		<label for=" response-headers">Response Headers</label>
+		<textarea class="input" id="response-headers"></textarea>
+	</div>
+	<div class="button-container">
+		<button>Download Config</button>
+		<button>Upload Config</button>
+	</div>
+</body>
+
 </html>
