@@ -24,8 +24,18 @@
 		<textarea class="input" id="response-headers"></textarea>
 	</div>
 	<div class="button-container">
-		<button>Download Config</button>
-		<button>Upload Config</button>
+		<button id="download-config">Download Config</button>
+		<button id="upload-config">Upload Config</button>
+	</div>
+	<div class="property-list-container">
+		<h4 class="property-list-header">Domains</h4>
+		<button class="add-property-button">Add</button>
+		<ul id="domains-list" class="property-list">
+			<select name="domains-select" id="domains-select">
+				<option value="thing">Thing</option>
+			</select>
+		</ul>
+		<p class="empty-list-message">No domains added</p>
 	</div>
 </body>
 

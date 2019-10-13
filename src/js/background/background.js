@@ -1,5 +1,5 @@
-import '../img/cors-extension-disabled-64.png'
-import '../img/cors-extension-enabled-64.png'
+import '../../img/cors-extension-disabled-64.png'
+import '../../img/cors-extension-enabled-64.png'
 
 const userInputs = {
   enabled: false,

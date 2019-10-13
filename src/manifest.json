@@ -1,17 +1,17 @@
 {
-	"name": "CORS Extension",
-	"version": "1.0",
-	"description": "Chrome extension for managing CORS",
-	"manifest_version": 2,
-	"background": {
-		"page": "background.html",
-		"persistent": true
-	},
-	"browser_action": {
-		"default_popup": "popup.html",
-		"default_icon": "cors-extension-disabled-64.png"
-	},
-	"permissions": ["storage", "webRequest", "webRequestBlocking", "<all_urls>"],
-	"icons": { "64": "cors-extension-enabled-64.png" },
-	"content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
+  "name": "CORS Extension",
+  "version": "1.0",
+  "description": "Chrome extension for managing CORS",
+  "manifest_version": 2,
+  "background": {
+    "page": "background.html",
+    "persistent": true
+  },
+  "browser_action": {
+    "default_popup": "popup.html",
+    "default_icon": "cors-extension-disabled-64.png"
+  },
+  "permissions": ["storage", "webRequest", "webRequestBlocking", "<all_urls>"],
+  "icons": { "64": "cors-extension-enabled-64.png" },
+  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
 }

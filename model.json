@@ -1,0 +1,16 @@
+{
+  "domains": [
+    {
+      "protocol": "https://",
+      "hostname": "google.com",
+      "port": null
+    },
+    {
+      "protocol": "http://",
+      "hostname": "localhost",
+      "port": 3000
+    }
+  ],
+  "requestHeaders": [],
+  "responseHeaders": []
+}

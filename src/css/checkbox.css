@@ -1,0 +1,63 @@
+.checkbox-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: var(--checkbox-size);
+  margin-bottom: var(--container-padding);
+}
+
+/* Actual HTML checkbox - invisible but still accessible */
+.checkbox-container input[type='checkbox'] {
+  opacity: 0;
+  height: var(--checkbox-size);
+  width: var(--checkbox-size);
+  margin: 0;
+  margin-right: var(--section-spacing);
+}
+
+/* Custom checkbox border */
+.checkbox-container label::before {
+  position: absolute;
+  box-sizing: border-box;
+  top: 0;
+  left: 0;
+  content: '';
+  height: var(--checkbox-size);
+  width: var(--checkbox-size);
+  border: var(--border);
+  border-radius: var(--border-radius);
+}
+
+/* Custom checkmark */
+.checkbox-container label::after {
+  position: absolute;
+  content: '';
+  height: 7px;
+  width: 16px;
+  top: 7px;
+  left: 5px;
+  border-left: 4px solid var(--active-color);
+  border-bottom: 4px solid var(--active-color);
+  transform: rotate(-45deg);
+  transition: all 0.2s ease-in-out;
+}
+
+/* Hide the checkmark by default */
+.checkbox-container input[type='checkbox'] + label::after {
+  opacity: 0;
+}
+
+/* Show the checkmark when checked */
+.checkbox-container input[type='checkbox']:checked + label::after {
+  opacity: 1;
+}
+
+/* Bind HTML checkbox focus style to custom checkbox */
+.checkbox-container input[type='checkbox']:focus + label::before {
+  outline: var(--focus-outline);
+}
+
+/* Color the checkbox background when checked */
+.checkbox-container input[type='checkbox']:checked + label::before {
+  background-color: var(--active-background);
+}

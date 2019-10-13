@@ -1,0 +1,30 @@
+.property-list-container {
+  border: var(--border);
+  border-radius: var(--border-radius);
+  padding: var(--section-padding);
+  margin-top: var(--section-spacing);
+}
+
+.property-list-header {
+  display: inline-block;
+  margin: 0;
+  color: var(--text-color);
+}
+
+.add-property-button {
+  float: right;
+}
+
+.property-list {
+  margin: 0;
+  padding: 0;
+}
+
+.empty-list-message {
+  margin: 0;
+  padding: 8px 0px;
+  text-align: center;
+  color: #8a8a8a;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+}

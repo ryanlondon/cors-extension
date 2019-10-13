@@ -1,0 +1,19 @@
+{
+  "protocols": {
+    "HTTP": { "value": "http://", "defaultPort": 80 },
+    "HTTPS": { "value": "https://", "defaultPort": 443 }
+  },
+  "requestHeaderOptions": [
+    "Origin",
+    "Access-Control-Request-Method",
+    "Access-Control-Request-Headers"
+  ],
+  "responseHeaderOptions": [
+    "Access-Control-Allow-Origin",
+    "Access-Control-Allow-Credentials",
+    "Access-Control-Expose-Headers",
+    "Access-Control-Max-Age",
+    "Access-Control-Allow-Methods",
+    "Access-Control-Allow-Headers"
+  ]
+}
